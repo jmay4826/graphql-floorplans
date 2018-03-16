@@ -1,0 +1,22 @@
+type Location {
+  id: ID!
+  name: String!
+  latitude: String
+  longitude: String
+  floorplan: String
+  district: String
+  active: Boolean
+  height: Int
+  width: Int
+  comments: [Comment]
+  users: [User]
+}
+
+input LocationId {
+  id: ID!
+}
+
+extend type Query {
+  getLocations: [Location]
+  getLocation(input: LocationId): Location
+}

@@ -1,0 +1,20 @@
+type Comment {
+  id: ID!
+  content: String
+  updated_at: String
+  created_at: String
+  author: User
+  location: Location
+  x: Int
+  y: Int
+  image: String
+  complete: Boolean
+  completed_by: User
+  replies: [Comment]
+  reply_to: Comment
+  tags: [Tag]
+}
+
+extend type Query {
+  getComments(input: LocationId!): [Comment]
+}

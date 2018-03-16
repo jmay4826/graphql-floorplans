@@ -1,0 +1,15 @@
+type Tag {
+  id: ID!
+  comment: Comment
+  title: String
+  category: String
+  subcategory: String
+}
+
+input CommentId {
+  id: ID!
+}
+
+extend type Query {
+  getTagsForComment(input: CommentId): [Tag]
+}
