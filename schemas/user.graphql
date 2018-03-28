@@ -1,8 +1,7 @@
 type User {
-  id: ID!
   locations: [Location]
   name: String
-  type: String!
+  type: String
   username: String
 }
 

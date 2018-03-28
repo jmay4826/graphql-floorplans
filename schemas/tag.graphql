@@ -11,5 +11,5 @@ input CommentId {
 }
 
 extend type Query {
-  getTagsForComment(input: CommentId): [Tag]
+  getTagsForComment(id: ID!): [Tag]
 }

@@ -3,7 +3,7 @@ type Comment {
   content: String
   updated_at: String
   created_at: String
-  author: User
+  author: String
   location: Location
   x: Int
   y: Int
@@ -16,5 +16,5 @@ type Comment {
 }
 
 extend type Query {
-  getComments(input: LocationId!): [Comment]
+  getComments(id: ID!): [Comment]
 }
