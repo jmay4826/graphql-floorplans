@@ -21,7 +21,7 @@ schema {
 const resolvers = merge(userResolver, locationResolver);
 const schema = makeExecutableSchema({
   typeDefs: [baseSchema, userSchema, locationSchema, commentSchema, tagSchema],
-  resolvers: merge(userResolver, locationResolver, commentResolver)
+  resolvers: merge(userResolver, locationResolver)
 });
 
 module.exports = graphqlExpress(req => ({

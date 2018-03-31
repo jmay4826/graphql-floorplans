@@ -24,6 +24,9 @@ const getRealName = () => {
   console.log("get real name in location");
   return "may";
 };
+const getReplies = async ({ id }, args, context) => {
+  return await context.req.app.get("db").comments.find({ reply_id: id });
+};
 
 module.exports = {
   Query: {
@@ -31,5 +34,8 @@ module.exports = {
   },
   Location: {
     comments: getComments
+  },
+  Comment: {
+    replies: getReplies
   }
 };
