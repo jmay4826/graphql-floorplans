@@ -9,6 +9,7 @@ type Location {
   height: Int
   width: Int
   comments: [Comment]
+  users: [User]
 }
 
 input LocationId {
