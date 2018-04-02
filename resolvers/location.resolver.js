@@ -20,9 +20,20 @@ const getReplies = async ({ id }, args, context) => {
   return await context.req.app.get("db").comments.find({ reply_id: id });
 };
 
+const addComment = async (rootValue, { input }, context) => {
+  console.log(input);
+  const db = context.req.app.get("db");
+  return await db.comments
+    .save(input)
+    .then(() => db.comments.find({ location: input.location }));
+};
+
 module.exports = {
   Query: {
     getLocation
+  },
+  Mutation: {
+    addComment
   },
   Location: {
     comments: getComments,

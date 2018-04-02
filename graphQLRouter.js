@@ -5,7 +5,6 @@ const { merge } = require("lodash");
 
 const userResolver = require("./resolvers/user.resolver");
 const locationResolver = require("./resolvers/location.resolver");
-const commentResolver = require("./resolvers/comment.resolver");
 
 let locationSchema = fs.readFileSync("./schemas/location.graphql", "utf8");
 let commentSchema = fs.readFileSync("./schemas/comment.graphql", "utf8");
@@ -15,6 +14,7 @@ let tagSchema = fs.readFileSync("./schemas/tag.graphql", "utf8");
 const baseSchema = `
 schema {
     query: Query
+    mutation: Mutation
 }
 `;
 

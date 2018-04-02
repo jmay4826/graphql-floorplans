@@ -18,3 +18,20 @@ type Comment {
 extend type Query {
   getComments(id: ID!): [Comment]
 }
+
+input NewComment {
+  content: String
+  created_at: String
+  author: String
+  location: String!
+  x: Int
+  y: Int
+  image: String
+  complete: Boolean
+  completed_by: String
+  tags: [String]
+}
+
+type Mutation {
+  addComment(input: NewComment!): [Comment]
+}
