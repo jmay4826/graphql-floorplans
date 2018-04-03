@@ -5,7 +5,10 @@ const getLocation = async (rootValue, args, context, info) => {
 const getComments = async (rootValue, args, context, info) => {
   return await context.req.app
     .get("db")
-    .comments.find({ location: rootValue.id });
+    .comments.find(
+      { location: rootValue.id },
+      { order: [{ field: "created_at", direction: "desc" }] }
+    );
 };
 
 const getUsers = async (rootValue, args, context, info) => {
@@ -23,9 +26,8 @@ const getReplies = async ({ id }, args, context) => {
 const addComment = async (rootValue, { input }, context) => {
   console.log(input);
   const db = context.req.app.get("db");
-  return await db.comments
-    .save(input)
-    .then(() => db.comments.find({ location: input.location }));
+  return await db.comments.save(input);
+  //.then(() => db.comments.find({ location: input.location }));
 };
 
 module.exports = {

@@ -33,5 +33,5 @@ input NewComment {
 }
 
 type Mutation {
-  addComment(input: NewComment!): [Comment]
+  addComment(input: NewComment!): Comment
 }
