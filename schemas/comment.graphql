@@ -4,7 +4,7 @@ type Comment {
   updated_at: String
   created_at: String
   author: String
-  location: Location
+  location: String
   x: Float
   y: Float
   image: String

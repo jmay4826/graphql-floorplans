@@ -15,6 +15,7 @@ const getComments = async (rootValue, args, context, info) => {
   return { incomplete, completed };
 };
 
+
 const getUsers = async (rootValue, args, context, info) => {
   const users = await context.req.app
     .get("db")
