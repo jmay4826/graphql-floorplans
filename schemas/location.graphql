@@ -8,8 +8,13 @@ type Location {
   active: Boolean
   height: Int
   width: Int
-  comments: [Comment]
+  comments: Comments
   users: [User]
+}
+
+type Comments {
+  completed: [Comment]
+  incomplete: [Comment]
 }
 
 input LocationId {

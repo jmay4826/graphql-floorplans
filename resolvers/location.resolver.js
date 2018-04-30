@@ -3,12 +3,16 @@ const getLocation = async (rootValue, args, context, info) => {
 };
 
 const getComments = async (rootValue, args, context, info) => {
-  return await context.req.app
+  const comments = await context.req.app
     .get("db")
     .comments.find(
       { location: rootValue.id },
       { order: [{ field: "created_at", direction: "desc" }] }
     );
+
+  const incomplete = comments.filter(({ complete }) => !complete);
+  const completed = comments.filter(({ complete }) => complete);
+  return { incomplete, completed };
 };
 
 const getUsers = async (rootValue, args, context, info) => {
@@ -30,12 +34,17 @@ const addComment = async (rootValue, { input }, context) => {
   //.then(() => db.comments.find({ location: input.location }));
 };
 
+const deleteComment = async (rootValue, { id }, context) => {
+  return (await context.req.app.get("db").comments.destroy({ id }))[0];
+};
+
 module.exports = {
   Query: {
     getLocation
   },
   Mutation: {
-    addComment
+    addComment,
+    deleteComment
   },
   Location: {
     comments: getComments,

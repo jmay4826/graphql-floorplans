@@ -5,8 +5,8 @@ type Comment {
   created_at: String
   author: String
   location: Location
-  x: Int
-  y: Int
+  x: Float
+  y: Float
   image: String
   complete: Boolean
   completed_by: User
@@ -24,8 +24,8 @@ input NewComment {
   created_at: String
   author: String
   location: String!
-  x: Int
-  y: Int
+  x: Float
+  y: Float
   image: String
   complete: Boolean
   completed_by: String
@@ -34,4 +34,5 @@ input NewComment {
 
 type Mutation {
   addComment(input: NewComment!): Comment
+  deleteComment(id: Int!): Comment
 }
