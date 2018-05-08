@@ -35,4 +35,5 @@ input NewComment {
 type Mutation {
   addComment(input: NewComment!): Comment
   deleteComment(id: Int!): Comment
+  completeComment(id: Int!): Comment
 }

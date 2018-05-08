@@ -15,7 +15,6 @@ const getComments = async (rootValue, args, context, info) => {
   return { incomplete, completed };
 };
 
-
 const getUsers = async (rootValue, args, context, info) => {
   const users = await context.req.app
     .get("db")
@@ -39,13 +38,20 @@ const deleteComment = async (rootValue, { id }, context) => {
   return (await context.req.app.get("db").comments.destroy({ id }))[0];
 };
 
+const completeComment = async (rootValue, { id }, context) => {
+  return await context.req.app
+    .get("db")
+    .comments.update({ id, complete: true });
+};
+
 module.exports = {
   Query: {
     getLocation
   },
   Mutation: {
     addComment,
-    deleteComment
+    deleteComment,
+    completeComment
   },
   Location: {
     comments: getComments,
