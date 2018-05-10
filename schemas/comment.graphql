@@ -26,7 +26,7 @@ input NewComment {
   location: String!
   x: Float
   y: Float
-  image: String
+  image: Upload
   complete: Boolean
   completed_by: String
   tags: [String]

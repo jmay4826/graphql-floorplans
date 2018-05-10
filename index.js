@@ -9,6 +9,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const session = require("express-session");
 const bcrypt = require("bcryptjs");
+const { apolloUploadExpress } = require("apollo-upload-server");
 
 const app = express();
 massive(process.env.CONNECTION_STRING).then(db => {
@@ -39,6 +40,7 @@ passport.deserializeUser((obj, done) => {
 });
 
 app.use(bodyParser.json());
+app.use(apolloUploadExpress());
 
 passport.use(
   new LocalStrategy(function(username, password, done) {
@@ -60,7 +62,7 @@ passport.use(
 app.use(
   "/graphql",
   (req, res, next) => {
-    console.log(req.user);
+    console.log("req.user", req.user);
     return next();
   },
   graphQLRouter

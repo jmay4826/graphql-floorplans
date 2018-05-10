@@ -1,3 +1,5 @@
+const { GraphQLUpload } = require("apollo-upload-server");
+
 const getLocation = async (rootValue, args, context, info) => {
   return await context.req.app.get("db").locations.findOne({ id: args.id });
 };
@@ -59,5 +61,6 @@ module.exports = {
   },
   Comment: {
     replies: getReplies
-  }
+  },
+  Upload: GraphQLUpload
 };

@@ -1,5 +1,6 @@
 const { makeExecutableSchema } = require("graphql-tools");
 const { graphqlExpress } = require("apollo-server-express");
+
 const fs = require("fs-extra");
 const { merge } = require("lodash");
 
@@ -20,7 +21,14 @@ schema {
 
 const resolvers = merge(userResolver, locationResolver);
 const schema = makeExecutableSchema({
-  typeDefs: [baseSchema, userSchema, locationSchema, commentSchema, tagSchema],
+  typeDefs: [
+    `scalar Upload`,
+    baseSchema,
+    userSchema,
+    locationSchema,
+    commentSchema,
+    tagSchema
+  ],
   resolvers: merge(userResolver, locationResolver)
 });
 
