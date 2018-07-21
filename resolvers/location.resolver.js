@@ -1,4 +1,26 @@
 const { GraphQLUpload } = require("apollo-upload-server");
+const firebase = require("firebase");
+const storage = require("firebase/storage");
+const toBlob = require("stream-to-blob");
+require("dotenv").config();
+const {
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId
+} = process.env;
+
+const app = firebase.initializeApp({
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId
+});
+console.log(app);
 
 const getLocation = async (rootValue, args, context, info) => {
   return await context.req.app.get("db").locations.findOne({ id: args.id });

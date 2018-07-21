@@ -1,4 +1,4 @@
-require("dotenv").config();
+//require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const { graphiqlExpress } = require("apollo-server-express");
@@ -12,6 +12,7 @@ const bcrypt = require("bcryptjs");
 const { apolloUploadExpress } = require("apollo-upload-server");
 
 const app = express();
+
 massive(process.env.CONNECTION_STRING).then(db => {
   app.set("db", db);
 });
@@ -62,7 +63,6 @@ passport.use(
 app.use(
   "/graphql",
   (req, res, next) => {
-    console.log("req.user", req.user);
     return next();
   },
   graphQLRouter
